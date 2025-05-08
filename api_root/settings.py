@@ -76,6 +76,7 @@ WSGI_APPLICATION = 'api_root.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# IMPORTANTE: O banco de dados precisa existir para funcionar a migração
 DATABASES = {
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
@@ -84,14 +85,14 @@ DATABASES = {
     "default": {
         "ENGINE": "mssql",
         "NAME": "FirstApiDjangoDb",
-        #"USER": "USER_NAME",
-        #"PASSWORD": "PASSWORD",
-        "HOST": "DIOGOWOLFROS\\SQLEXPRESS",
+        #"USER": "wolf",
+        #"PASSWORD": "Wolf@134",
+        "HOST": "DIOGOWOLFROS\\SQLEXPRESS", # localhost tbm funciona
         #"PORT": 1433,
         #"CONN_MAX_AGE": 60, # Tempo espera limite (Timeout)
         "OPTIONS": {
             "driver": "ODBC Driver 17 for SQL Server",
-            "extra_params": "Encrypt=yes;Trusted_Connection=yes", # Para realizar autenticação do windows no SQL Server
+            "Trusted_Connection": "yes"
         },
     },
 }

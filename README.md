@@ -32,12 +32,7 @@ OU
     py manage.py migrate
 ```
 
-**Iniciar projeto:**
-```bash
-    py manage.py runserver
-```
-
-OBS: Para os comandos acima: caso for linux digitar *python*, caso for windows digitar apenas *py*.
+OBS: Para os comandos, caso for linux digitar *python*, caso for windows digitar apenas *py*.
 
 **Dicas úteis:**
 
@@ -66,3 +61,15 @@ Também pode ser feito os dois comandos de uma vez:
     py manage.py makemigrations && py manage.py migrate
 ```
 
+### Criar super usuário (admin)
+
+Para criar um admin, digite o comando abaixo:
+```bash
+    py manage.py createsuperuser
+```
+
+### Iniciar projeto:
+
+```bash
+    py manage.py runserver
+```
