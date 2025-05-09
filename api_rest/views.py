@@ -3,10 +3,10 @@ from django.http import HttpResponse, JsonResponse
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, viewsets
 
-from .models import User
-from .serializers import UserSerializer
+from .models import User, Author, Book
+from .serializers import UserSerializer, BookSerializer, AuthorSerializer
 
 import json
 
@@ -24,3 +24,7 @@ def get_users(request):
     serializer = UserSerializer(users, many=True)
 
     return Response(serializer.data)
+
+class AuthorViewSet(viewsets.ModelViewSet): # TODO: Falta resolver problema com autenticação (Como faz a autenticação?)
+    queryset = Author.objects.prefetch_related('books').all()
+    serializer_class = AuthorSerializer

@@ -12,6 +12,16 @@ Repositório com a finalidade de estudar como realizar uma API com Django, utili
     pip install django djangorestframework django-cors-headers
 ```
 
+Caso for utilizar Sql Server:
+```bash
+    pip install mssql-django
+```
+
+Caso precisar do Swagger:
+```bash
+    pip install drf-spectacular drf-spectacular-sidecar
+```
+
 **Criar arquivo de configuração do projeto:**
 ```bash
     django-admin startproject api_root .
@@ -43,6 +53,8 @@ Para salvar as versões de cada framework em um arquivo requirements.txt utiliza
 
 Vídeo de apoio:
 [Como criar uma API em Django - Criando um CRUD - Aula Completa](https://www.youtube.com/watch?v=Q2tEqNfgIXM)
+
+Importante: Caso quiser excluir as migrations, **não exclua apasta inteira!!** Exclua apenas os arquivos de migração, mas não apague o arquivo __init__.py ou a pasta inteira.
 
 ### Criando e aplicando as migrations de banco de dados
 

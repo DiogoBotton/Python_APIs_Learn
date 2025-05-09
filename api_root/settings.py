@@ -39,8 +39,25 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework', # Adicionado
     'corsheaders', # Adicionado
-    'api_rest' # Adicionado o app da API
+    'api_rest', # Adicionado o app da API
+    'drf_spectacular' # Adicionado (Swagger)
 ]
+
+# Configurações REST Framework (Adicionado)
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ],
+}
+
+# Configurações Spetacular (Swagger, Adicionado)
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Django First API',
+    'DESCRIPTION': 'Primeira API em Django',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

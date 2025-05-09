@@ -16,9 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 # Aqui é necessário adicionar as URL's da API
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('api_rest.urls', name='api_rest.urls'))
+    path('api/', include('api_rest.urls'), name='api_rest.urls'),
+
+    # Swagger UI endpoints
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
 ]
