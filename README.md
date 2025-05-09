@@ -85,3 +85,13 @@ Para criar um admin, digite o comando abaixo:
 ```bash
     py manage.py runserver
 ```
+
+### Exemplos de consultas do banco de dados
+
+```py
+    data = User.objects.get(Id='') # Retorna um objeto (GetById)
+    data = User.objects.filter(Age=25) # Retorna uma queryset (lista), retorna os que tem 25 anos
+    data = User.objects.exclude(Age=25) # Retorna todos os objetos que não tem o paramêtro especificado (retorna os que não tem 25 anos)
+    data.save()
+    data.delete()
+```
