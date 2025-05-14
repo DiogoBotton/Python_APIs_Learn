@@ -9,7 +9,7 @@ services:
       - db
     environment:
       - DB_USERNAME=dbadmin
-      - DB_PASSWORD=Wolfros!#$134
+      - DB_PASSWORD=Wolfros!#$123
       # - DB_PASSWORD=${DB_PASSWORD}
       - DB_HOST=db
       - DB_PORT=5432
@@ -19,11 +19,11 @@ services:
     image: postgres:latest
     environment:
       POSTGRES_USER: dbadmin
-      POSTGRES_PASSWORD: Wolfros!#$134
+      POSTGRES_PASSWORD: Wolfros!#$123
       # POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: widgets_db
     ports:
-      - 5434:5432
+      - 5434:5432 # Caso haja dois bancos (um na máquina e outro no container, é necessário alterar a porta externa, da esquerda para não haver conflito)
     volumes:
       - db_data:/var/lib/postgresql/data
 

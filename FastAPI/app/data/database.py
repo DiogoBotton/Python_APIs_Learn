@@ -1,15 +1,15 @@
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, scoped_session
+from sqlalchemy.orm import sessionmaker
 from urllib.parse import quote
 
-from core.extensions.queries import SoftDeleteQuery
+from infraestructure.extensions.queries import SoftDeleteQuery
 
-USERNAME = os.getenv('DB_USERNAME')
-PASSWORD = os.getenv('DB_PASSWORD')
-HOST = os.getenv('DB_HOST', 'db')
-PORT = os.getenv('DB_PORT', '5432')
+USERNAME = os.getenv('DB_USERNAME', 'dbadmin')
+PASSWORD = os.getenv('DB_PASSWORD', 'Wolfros!#$123')
+HOST = os.getenv('DB_HOST', 'localhost')
+PORT = os.getenv('DB_PORT', '5434')
 DB_NAME = os.getenv('DB_NAME', 'widgets_db')
 
 if USERNAME is None or PASSWORD is None:
@@ -20,9 +20,12 @@ PASSWORD = quote(PASSWORD)
 DATABASE_URL = f"postgresql://{USERNAME}:{PASSWORD}@{HOST}:{PORT}/{DB_NAME}"
 
 engine = create_engine(DATABASE_URL)
-SessionLocal = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
+SessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=engine,
+    query_cls=SoftDeleteQuery)
 Base = declarative_base()
-Base.query = SessionLocal.query_property(query_cls=SoftDeleteQuery)
 
 # Dependência para adquirir a sessão do banco de dados
 def get_db():
@@ -31,4 +34,3 @@ def get_db():
         yield db
     finally:
         db.close()
-        SessionLocal.remove()
