@@ -1,8 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from src.data.database import Base, engine
+#from src.data.database import Base, engine
 
-# Criação automática do banco de dados
+from src.features.users import users_controller
+
+# Criação automática do banco de dados (comentado pois o alembic já realiza isto)
 #Base.metadata.create_all(bind=engine) # O banco de dados precisa existir antes de executar
 
 app = FastAPI(
@@ -18,3 +20,5 @@ app.add_middleware(
     allow_methods=['*'],
     allow_headers=['*']
 )
+
+app.include_router(users_controller.router)
