@@ -1,12 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from data.database import Base, engine
-
-# Importação necessária para importar os modelos do banco dados e criados com o create_all abaixo (caso estejam em pastas diferentes)
-import core
+from src.data.database import Base, engine
 
 # Criação automática do banco de dados
-Base.metadata.create_all(bind=engine) # O banco de dados precisa existir antes de executar
+#Base.metadata.create_all(bind=engine) # O banco de dados precisa existir antes de executar
 
 app = FastAPI(
     title="Widgets API",

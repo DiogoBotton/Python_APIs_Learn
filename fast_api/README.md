@@ -4,7 +4,7 @@
 
 [Usando o Poetry em seus projetos python](https://medium.com/@volneycasas/usando-o-poetry-em-seus-projetos-python-70be5f018281)
 
-### Passo a Passo:
+### Passo a Passo com Poetry:
 
 Instalar o Poetry
 
@@ -47,10 +47,42 @@ Para inicializar a aplicação (é necessário estar no mesmo diretório):
     poetry run uvicorn main:app --reload
 ```
 
+No caso da estrutura do projeto realizado, é necessário indicar onde está o arquivo main, então colocamos src.main:app:
+
+```bash
+    poetry run uvicorn src.main:app --reload
+```
+
 #### Dicas
 
 Para atualizar dependências específicas do projeto:
 
 ```bash
     poetry update fastapi
+```
+
+### Passo a Passo com Alembic (gerenciador de migrações de bancos de dados)
+
+Instale o alembic com o poetry:
+
+```bash
+    poetry add alembic
+    poetry install
+```
+
+Inicialize o alembic:
+
+```bash
+    alembic init <nome-da-pasta>
+    alembic init migrations
+```
+
+Gerando a migração:
+```bash
+    alembic revision --autogenerate -m "create users table"
+```
+
+Aplicando a migração:
+```bash
+    alembic upgrade head
 ```

@@ -4,7 +4,7 @@ from sqlalchemy.orm import relationship
 import uuid
 from .enums.enum_type import IntFlagEnumType
 
-from data.database import Base
+from src.data.database import Base
 from .abstractions.domain_base import DomainBase
 from .enums.role_type import RoleType
 
