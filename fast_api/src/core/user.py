@@ -15,6 +15,12 @@ class User(DomainBase, Base):
     cpf = Column(String, unique=True, nullable=False)
     roles = Column(IntFlagEnumType(RoleType), nullable=False, default=RoleType.Common)
 
+    # 1 usuário tem várias matriculas, quem referencia usuário? prop user da entidade 'Enrollment'
+    enrollments = relationship('Enrollment', back_populates='user') # back_populates é qual a propriedade que realiza a referência inversa (de Enrollment para User), no caso, user
+
+    # 1 usuário pode criar vários cursos
+    courses_created = relationship('Course', back_populates='creator')
+
     def set_roles(self, roles: list[RoleType]):
         self.roles = RoleType(0)
         for role in roles:
