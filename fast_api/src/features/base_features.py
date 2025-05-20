@@ -1,1 +1,0 @@
-# TODO: Criar classe para abstrair methods (simular handle do Mediator)
