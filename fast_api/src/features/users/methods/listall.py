@@ -1,10 +1,12 @@
-from pydantic import BaseModel
 from . import BaseFeature
 from src.core.user import User
 from src.infraestructure.utils import remove_accents
+from src.infraestructure.pagination.models import PageRequest
+from src.infraestructure.pagination.functions import paginate
+from src.infraestructure.results.user import UserResult
 
 # Request
-class Query(BaseModel):
+class Query(PageRequest):
     search: str | None = None
 
 # Handle
@@ -20,4 +22,4 @@ class Handle(BaseFeature):
                 User.cpf.ilike(f'%{search}%')
             )
 
-        return query.all()
+        return paginate(query, request, UserResult)

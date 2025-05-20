@@ -5,6 +5,6 @@ from sqlalchemy.orm import Session
 
 class BaseFeature(ABC):
     @abstractmethod
-    def execute(self, db: Session, request: BaseModel):
+    def execute(self, db: Session, request: BaseModel): # TODO: Tentar adicionar snippet para o "not_deleted"
         """Deve ser implementado pelas subclasses"""
         raise NotImplementedError("Feature não implementada.")
