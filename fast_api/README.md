@@ -47,7 +47,7 @@ Para inicializar a aplicação (é necessário estar no mesmo diretório):
     poetry run uvicorn main:app --reload
 ```
 
-No caso da estrutura do projeto realizado, é necessário indicar onde está o arquivo main, então colocamos src.main:app:
+No caso da estrutura do projeto realizado, é necessário indicar onde está o arquivo main, então colocamos src.main:app (necessário estar no diretório 'fast_api/app'):
 
 ```bash
     poetry run uvicorn src.main:app --reload
@@ -87,9 +87,11 @@ Aplicando a migração:
     alembic upgrade head
 ```
 
+OBS. Talvez seja necessário ajustar as migrações auto geradas pelo alembic, então sempre verifique se as migrations estão corretas e sem erros de lógica / regra de negócio.
+
 ### Docker
 
-Caso seja necessário a api (dentro de um container) se conectar a um banco que está em outro container do docker, é necessário colocar como string de conexão *host.docker.internal:<porta>* ou apenas *host.docker.internal* e definir a porta posteriormente.
+Caso seja necessário que API fique dentro de um container e se conectar a um banco que está em outro container do docker, é necessário colocar como string de conexão *host.docker.internal:<porta>* ou apenas *host.docker.internal* e definir a porta posteriormente.
 
 Sempre que for acrescentado uma nova biblioteca, ou mesmo antes de subir a aplicação em um container do Docker, é recomendado validar com:
 
@@ -100,3 +102,9 @@ Sempre que for acrescentado uma nova biblioteca, ou mesmo antes de subir a aplic
 ```
 
 Isso ajuda a garantir que o pyproject.toml está correto antes de empacotar no Docker.
+
+Quando tudo certo, subir o container docker com:
+
+```bash
+    docker-compose up -d --build
+```
