@@ -5,6 +5,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "80:80"
+    depends_on:
+      - db
     environment:
       - DATABASE_URL=postgresql+psycopg2://dbadmin:Wolfros!#$123@db:5432/widgets_db
       # - DATABASE_URL=${DATABASE_URL} # Recomendado para produção

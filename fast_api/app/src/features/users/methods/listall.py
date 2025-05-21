@@ -1,18 +1,24 @@
-from . import BaseFeature
+from fastapi import Depends
+from sqlalchemy.orm import Session
+from src.data.database import get_db
+from . import BaseHandler
 from src.core.user import User
-from src.infraestructure.utils import remove_accents
-from src.infraestructure.pagination.models import PageRequest
-from src.infraestructure.pagination.functions import paginate
-from src.infraestructure.results.user import UserResult
+from src.infrastructure.utils import remove_accents
+from src.infrastructure.pagination.models import PageRequest, PageResult
+from src.infrastructure.pagination.functions import paginate
+from src.infrastructure.results.user import UserResult
 
 # Request
 class Query(PageRequest):
     search: str | None = None
 
 # Handle
-class Handle(BaseFeature):
-    def execute(self, db, request: Query):
-        query = db.query(User).not_deleted()
+class ListAll(BaseHandler[Query, PageResult[UserResult]]):
+    def __init__(self, db: Session = Depends(get_db)):
+        self.db = db
+
+    def execute(self, request: Query):
+        query = self.db.query(User).not_deleted()
 
         if request.search:
             search = remove_accents(request.search.lower())

@@ -1,8 +1,12 @@
+from fastapi import HTTPException, Depends
+from sqlalchemy.orm import Session
+from src.data.database import get_db
 from pydantic import BaseModel, field_validator
-from . import BaseFeature
+from . import BaseHandler
 from src.core.user import User
 from src.core.enums.role_type import RoleType
-from src.infraestructure.validations import is_valid_email, is_cpf
+from src.infrastructure.validations import is_valid_email, is_cpf
+from src.infrastructure.results.default import RegisterResult
 
 # Request
 class Command(BaseModel):
@@ -23,13 +27,19 @@ class Command(BaseModel):
         return v
 
 # Handle
-class Handle(BaseFeature):
-    def execute(self, db, request: Command):
+class Create(BaseHandler[Command, RegisterResult]):
+    def __init__(self, db: Session = Depends(get_db)):
+        self.db = db
+
+    def execute(self, request: Command):
+        if self.db.query(User).filter(User.email == request.email or User.cpf == request.cpf).first():
+                raise HTTPException(status_code=400, detail="Email ou CPF já cadastrado.")
+
         user = User(email = request.email,
                     cpf = request.cpf)
         user.set_roles(request.role)
     
-        db.add(user)
-        db.commit()
-        db.refresh(user)
+        self.db.add(user)
+        self.db.commit()
+        self.db.refresh(user)
         return user

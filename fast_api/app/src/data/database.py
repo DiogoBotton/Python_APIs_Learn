@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, scoped_session
 
-from src.infraestructure.queries import SoftDeleteQuery
+from src.infrastructure.queries import SoftDeleteQuery
 from settings import Settings
 
 DATABASE_URL = Settings().DATABASE_URL
