@@ -1,0 +1,24 @@
+services:
+  api:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    environment:
+      - DATABASE_URL=postgresql+psycopg2://dbadmin:Wolfros!#$123@db:5432/widgets_db
+      # - DATABASE_URL=${DATABASE_URL} # Recomendado para produção
+  
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: dbadmin
+      POSTGRES_PASSWORD: Wolfros!#$123
+      POSTGRES_DB: widgets_db
+    ports:
+      - 5435:5432 # Caso haja dois bancos (um na máquina e outro no container, é necessário alterar a porta externa, da esquerda para não haver conflito)
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
