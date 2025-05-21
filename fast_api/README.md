@@ -86,3 +86,17 @@ Aplicando a migração:
 ```bash
     alembic upgrade head
 ```
+
+### Docker
+
+Caso seja necessário a api (dentro de um container) se conectar a um banco que está em outro container do docker, é necessário colocar como string de conexão *host.docker.internal:<porta>* ou apenas *host.docker.internal* e definir a porta posteriormente.
+
+Sempre que for acrescentado uma nova biblioteca, ou mesmo antes de subir a aplicação em um container do Docker, é recomendado validar com:
+
+```bash
+    poetry check
+    poetry lock
+    poetry install
+```
+
+Isso ajuda a garantir que o pyproject.toml está correto antes de empacotar no Docker.

@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr, field_validator, model_validator
+from pydantic import BaseModel, field_validator
 from . import BaseFeature
 from src.core.user import User
 from src.core.enums.role_type import RoleType
