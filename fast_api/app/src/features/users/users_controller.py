@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, Body
-from src.features.users.methods import listall, create, detail
+from src.features.users.methods import listall, create, detail, edit, delete
 from src.infrastructure.results.user import UserResult
 from src.infrastructure.results.default import RegisterResult
 from src.infrastructure.pagination.models import PageResult
@@ -23,4 +23,16 @@ def detail_user(id: UUID,
 @router.post("", summary='Cria um usuário', response_model=RegisterResult)
 def create_user(command: create.Command = Body(...),
                 handler: create.Create = Depends()):
+    return handler.execute(command)
+
+@router.put("", summary="Edita um usuário por id")
+def edit_user(command: edit.Command = Body(...),
+                          handler: edit.Edit = Depends()):
+    return handler.execute(command)
+
+@router.delete("/{id}", summary="Deleta um usuário por id")
+def delete_user(id: UUID,
+                      handler: delete.Delete = Depends()):
+    command = delete.Command
+    command.id = id
     return handler.execute(command)

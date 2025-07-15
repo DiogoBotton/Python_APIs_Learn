@@ -61,6 +61,8 @@ Para atualizar dependências específicas do projeto:
     poetry update fastapi
 ```
 
+As vezes quando a API não é usada por algum tempo, as bibliotecas precisam ser instaladas novamente. Basta rodar os comandos *poetry shell* e *poetry install*.
+
 ### Passo a Passo com Alembic (gerenciador de migrações de bancos de dados)
 
 Instale o alembic com o poetry:
@@ -87,7 +89,8 @@ Aplicando a migração:
     alembic upgrade head
 ```
 
-OBS. Talvez seja necessário ajustar as migrações auto geradas pelo alembic, então sempre verifique se as migrations estão corretas e sem erros de lógica / regra de negócio.
+OBS 1. Talvez seja necessário ajustar as migrações auto geradas pelo alembic, então sempre verifique se as migrations estão corretas e sem erros de lógica / regra de negócio.
+OBS 2. Antes de aplicar a migração é necessário que o banco esteja criado no banco de dados (apenas o banco, não as tabelas).
 
 ### Docker
 

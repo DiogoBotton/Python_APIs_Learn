@@ -5,7 +5,7 @@ from pydantic import BaseModel, field_validator
 from . import BaseHandler
 from src.core.user import User
 from src.core.enums.role_type import RoleType
-from src.infrastructure.validations import is_valid_email, is_cpf
+from src.infrastructure.validations.fields import is_valid_email, is_cpf
 from src.infrastructure.results.default import RegisterResult
 
 # Request
@@ -32,14 +32,15 @@ class Create(BaseHandler[Command, RegisterResult]):
         self.db = db
 
     def execute(self, request: Command):
-        if self.db.query(User).filter(User.email == request.email or User.cpf == request.cpf).first():
-                raise HTTPException(status_code=400, detail="Email ou CPF já cadastrado.")
+        if (self.db.query(User)
+            .not_deleted()
+            .filter(User.email == request.email or User.cpf == request.cpf)
+            .first()):
+            raise HTTPException(status_code=400, detail="Email ou CPF já cadastrado.")
 
-        user = User(email = request.email,
-                    cpf = request.cpf)
-        user.set_roles(request.role)
+        entity = User(request.email, request.cpf, request.role)
     
-        self.db.add(user)
+        self.db.add(entity)
         self.db.commit()
-        self.db.refresh(user)
-        return user
+        self.db.refresh(entity)
+        return entity

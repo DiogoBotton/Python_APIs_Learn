@@ -28,3 +28,13 @@ class User(DomainBase, Base):
         
     def has_role(self, role: RoleType) -> bool:
         return (self.roles & role) == role
+    
+    def __init__(self, email: str, cpf: str, roles: list[RoleType]):
+        self.email = email
+        self.cpf = cpf
+        self.set_roles(roles)
+        
+    def update(self, email: str, cpf: str, roles: list[RoleType]):
+        self.email = email
+        self.cpf = cpf
+        self.set_roles(roles)
