@@ -1,1 +1,1 @@
-from src.features.feature_base import BaseFeature
+from src.features.base_handler import BaseHandler
