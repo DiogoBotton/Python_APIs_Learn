@@ -3,8 +3,8 @@ from sqlalchemy.orm import Session
 from src.data.database import get_db
 from pydantic import BaseModel, field_validator
 from . import BaseHandler
-from src.core.enums.role_type import RoleType
-from src.core.user import User
+from src.domains.enums.role_type import RoleType
+from src.domains.user import User
 from uuid import UUID
 from src.infrastructure.validations.existence import entity_id_exists, field_error
 from src.infrastructure.validations.fields import is_cpf, is_valid_email

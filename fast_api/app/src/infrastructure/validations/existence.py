@@ -2,7 +2,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy.sql import exists
 from uuid import UUID
 from fastapi.exceptions import RequestValidationError
-from src.core.abstractions.domain_base import DomainBase
+from src.domains.abstractions.domain_base import DomainBase
 
 def entity_id_exists(db: Session, entity: DomainBase, id: UUID):
     entity = (db

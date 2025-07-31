@@ -4,7 +4,7 @@ from src.data.database import get_db
 from pydantic import BaseModel
 from uuid import UUID
 from . import BaseHandler
-from src.core.user import User
+from src.domains.user import User
 from src.infrastructure.results.user import UserResult
 
 # Request

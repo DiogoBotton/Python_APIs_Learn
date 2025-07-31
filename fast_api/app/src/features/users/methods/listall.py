@@ -2,7 +2,7 @@ from fastapi import Depends
 from sqlalchemy.orm import Session
 from src.data.database import get_db
 from . import BaseHandler
-from src.core.user import User
+from src.domains.user import User
 from src.infrastructure.utils import remove_accents
 from src.infrastructure.pagination.models import PageRequest, PageResult
 from src.infrastructure.pagination.functions import paginate

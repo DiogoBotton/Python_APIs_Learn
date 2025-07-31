@@ -5,8 +5,8 @@ from sqlalchemy import pool
 
 from alembic import context
 
-# Necessário realizar a importação da src.core para ter os metadados das classes
-import src.core
+# Necessário realizar a importação da src.domains para ter os metadados das classes
+import src.domains
 from src.data.database import Base
 from settings import Settings
 

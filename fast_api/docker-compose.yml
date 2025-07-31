@@ -9,7 +9,7 @@ services:
       db:
         condition: service_healthy # Funciona em conjunto com HealthCheck do banco, apenas sobe API quando banco estiver iniciado
     environment:
-      - DATABASE_URL=postgresql+psycopg2://dbadmin:Wolfros!#$123@db:5432/widgets_db
+      - DATABASE_URL=postgresql+psycopg://dbadmin:Wolfros!#$123@db:5432/widgets_db
       # - DATABASE_URL=${DATABASE_URL} # Recomendado para produção
     networks:
       - app_network
