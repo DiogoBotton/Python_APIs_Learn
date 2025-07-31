@@ -11,8 +11,8 @@ from alembic import op
 import sqlalchemy as sa
 
 # Foi necessário realizar estes imports
-from src.core.enums.enum_type import IntFlagEnumType
-from src.core.enums.role_type import RoleType
+from src.domains.enums.enum_type import IntFlagEnumType
+from src.domains.enums.role_type import RoleType
 
 # revision identifiers, used by Alembic.
 revision: str = 'ec33e2b20607'

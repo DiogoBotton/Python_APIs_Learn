@@ -3,8 +3,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
 from starlette.status import HTTP_400_BAD_REQUEST
+from settings import Settings
 
 from src.features.users import users_controller
+from src.features.seeds import seeds_controller
+from src.features.auth import auth_controller
 
 app = FastAPI(
     title="Base API",
@@ -20,7 +23,12 @@ app.add_middleware(
     allow_headers=['*']
 )
 
+# Seed
+if Settings().ENVIRONMENT == "development":
+    app.include_router(seeds_controller.router)
+
 # Controllers
+app.include_router(auth_controller.router)
 app.include_router(users_controller.router)
 
 # Interceptador de erros de validação de campos
