@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+sqlalchemy
+alembic
+pydantic-settings
+validate-docbr
+uuid7
+psycopg[binary]
+bcrypt
+pyjwt
