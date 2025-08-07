@@ -47,7 +47,7 @@ class Edit(BaseHandler[Command, Response]):
 
     def execute(self, request: Command):      
         if not entity_id_exists(self.db, Competence, request.competence_id):
-            raise field_error("id", "Competência não encontrada.")
+            raise field_error("competence_id", "Competência não encontrada.")
         
         if (self.db.query(Questionnaire)
             .not_deleted()

@@ -20,6 +20,8 @@ class Question(DomainBase, Base):
         self.order = order
         self.questionnaire_id = questionnaire_id
 
-    def update(self, title: str, order: int):
+    def update(self, title: str):
         self.title = title
+        
+    def update_order(self, order: int):
         self.order = order

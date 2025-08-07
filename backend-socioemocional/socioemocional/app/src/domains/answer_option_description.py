@@ -14,12 +14,10 @@ class AnswerOptionDescription(DomainBase, Base):
     question = relationship("Question", back_populates="descriptions")
     answer_option = relationship("AnswerOption", back_populates="descriptions")
 
-    def __init__(self, description: str, question_id: UUID, answer_option_id: UUID):
+    def __init__(self, description: str, question_id: UUID | None, answer_option_id: UUID):
         self.description = description
         self.question_id = question_id
         self.answer_option_id = answer_option_id
 
-    def update(self, description: str, question_id: UUID, answer_option_id: UUID):
+    def update(self, description: str):
         self.description = description
-        self.question_id = question_id
-        self.answer_option_id = answer_option_id

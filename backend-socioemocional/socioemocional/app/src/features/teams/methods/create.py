@@ -37,7 +37,7 @@ class Create(BaseHandler[Command, RegisterResult]):
     def execute(self, request: Command):
         if (self.db.query(Team)
             .not_deleted()
-            .filter(Team.title.ilike(f'%{request.title}%'))
+            .filter(Team.name.ilike(f'%{request.name}%'))
             .first()):
             raise HTTPException(status_code=400, detail="Este nome de equipe já está em uso.")
         

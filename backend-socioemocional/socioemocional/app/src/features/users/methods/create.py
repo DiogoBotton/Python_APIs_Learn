@@ -45,9 +45,9 @@ class Create(BaseHandler[Command, RegisterResult]):
         
         entity = User(request.name, request.email, remove_special_characters(request.cpf), request.role)
 
-        await self.emailService.send_user_invite([
-            {"email": entity.email, "name": entity.name}
-            ])
+        # await self.emailService.send_user_invite([
+        #     {"email": entity.email, "name": entity.name}
+        #     ])
     
         self.db.add(entity)
         self.db.commit()

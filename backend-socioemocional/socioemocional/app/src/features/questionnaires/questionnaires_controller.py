@@ -1,4 +1,5 @@
-from fastapi import APIRouter, Depends, Body
+from typing import List
+from fastapi import APIRouter, Depends, Body, Query as FastQuery
 from src.features.questionnaires.methods import listall, create, detail, edit, delete
 from src.infrastructure.results.default import RegisterResult
 from src.infrastructure.pagination.models import PageResult
@@ -11,8 +12,9 @@ router = APIRouter(prefix="/questionnaires", tags=["Questionnaires"])
 # response_model converte o resultado para o tipo especificado
 @router.get("", summary="Lista todos os questionários", dependencies=[Depends(JWTBearer())], response_model=PageResult[QuestionnaireSimpleResult])
 def list_function(query: listall.Query = Depends(),
+                  team_ids: List[UUID] = FastQuery(None),
               handler: listall.ListAll = Depends()):
-    return handler.execute(query)
+    return handler.execute(query, team_ids)
 
 @router.get("/{id}", summary="Retorna um questionário por id", dependencies=[Depends(JWTBearer())], response_model=QuestionnaireResult)
 def detail_function(id: UUID,
@@ -24,6 +26,13 @@ def detail_function(id: UUID,
 @router.post("", summary='Cria um questionário', dependencies=[Depends(JWTBearer())], response_model=RegisterResult)
 def create_function(command: create.Command = Body(...),
                 handler: create.Create = Depends()):
+    """
+    Status:
+    
+    - Ativo = 1
+    - Rascunho = 2
+    - Inativo = 3
+    """
     return handler.execute(command)
 
 @router.put("", summary="Edita um questionário por id", dependencies=[Depends(JWTBearer())])

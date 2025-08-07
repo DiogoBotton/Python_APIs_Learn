@@ -1,9 +1,8 @@
 from src.infrastructure.results.base import BaseResult
 from uuid import UUID
 
-class UserResult(BaseResult):
+class AnswerOptionResult(BaseResult):
     id: UUID
-    name: str
-    email: str
-    cpf: str
-    role: int
+    title: str
+    value: int
+    order: int

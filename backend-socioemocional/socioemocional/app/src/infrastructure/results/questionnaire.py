@@ -1,7 +1,7 @@
 from src.infrastructure.results.base import BaseResult
 from uuid import UUID
 from src.domains.enums.questionnaire_status import QuestionnaireStatus
-from .team import TeamResult
+from .team import TeamSimpleResult
 from typing import List
 
 class QuestionnaireResult(BaseResult):
@@ -11,7 +11,7 @@ class QuestionnaireResult(BaseResult):
     status: QuestionnaireStatus
     competence_id: UUID
 
-    teams: List[TeamResult]
+    teams: List[TeamSimpleResult]
 
 
 class QuestionnaireSimpleResult(BaseResult):

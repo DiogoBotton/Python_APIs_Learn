@@ -36,7 +36,7 @@ class Edit(BaseHandler[Command, Response]):
     def execute(self, request: Command):      
         if (self.db.query(Team)
             .not_deleted()
-            .filter(and_(Team.title.ilike(f'%{request.title}%'), Team.id != request.id))
+            .filter(and_(Team.name.ilike(f'%{request.name}%'), Team.id != request.id))
             .first()):
             raise HTTPException(status_code=400, detail="Este nome de equipe já está em uso.")
         

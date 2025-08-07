@@ -18,7 +18,9 @@ class AnswerOption(DomainBase, Base):
         self.value = value
         self.order = order
 
-    def update(self, title: str, value: int, order: int):
+    def update(self, title: str, value: int):
         self.title = title
         self.value = value
+        
+    def update_order(self, order: int):
         self.order = order
