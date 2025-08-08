@@ -33,6 +33,7 @@ class ListAll(BaseHandler[Query, PageResult[QuestionSimpleResult]]):
             query = query.filter(
                 Question.questionnaire_id == request.questionnaire_id
             )
-            query = query.order_by(Question.order)
+        
+        query = query.order_by(Question.order)
 
         return paginate(query, request, QuestionSimpleResult)

@@ -13,9 +13,11 @@ class EvaluationAnswer(DomainBase, Base):
 
     answer_option_id = Column(UUID(as_uuid=True), ForeignKey("answer_options.id"), nullable=False)
     question_id = Column(UUID(as_uuid=True), ForeignKey("questions.id"), nullable=False)
+    evaluation_id = Column(UUID(as_uuid=True), ForeignKey("evaluations.id"), nullable=False)
 
     answer_option = relationship("AnswerOption", back_populates="evaluation_answers")
     question = relationship("Question", back_populates="evaluation_answers")
+    evaluation = relationship("Evaluation", back_populates="evaluation_answers")
 
     def __init__(self, answer_option_title: str, question_title: str, answer_option_description_title: str, answer_option_id: UUID, question_id: UUID):
         self.answer_option_title = answer_option_title

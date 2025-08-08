@@ -19,6 +19,7 @@ class Evaluation(DomainBase, Base):
     created_by = relationship("User", back_populates="evaluations_created", foreign_keys=[created_by_id])
     evaluated_person = relationship("User", back_populates="evaluations_received", foreign_keys=[evaluated_person_id])
     questionnaire = relationship("Questionnaire", back_populates="evaluations")
+    evaluation_answers = relationship("EvaluationAnswer", back_populates="evaluation")
 
     def __init__(self, evaluation_type: EvaluationType, observation: str, questionnaire_id: UUID, created_by_id: UUID, evaluated_person_id: None | UUID):
         self.evaluation_type = evaluation_type

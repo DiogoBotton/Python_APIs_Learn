@@ -7,6 +7,9 @@ from settings import Settings
 
 from src.features.users import users_controller
 from src.features.competences import competences_controller
+from src.features.answer_option_descriptions import answer_option_descriptions_controller
+from src.features.evaluation_answers import evaluation_answers_controller
+from src.features.evaluations import evaluations_controller
 from src.features.questionnaires import questionnaires_controller
 from src.features.teams import teams_controller
 from src.features.answer_options import answer_options_controller
@@ -38,8 +41,11 @@ app.include_router(users_controller.router)
 app.include_router(competences_controller.router)
 app.include_router(teams_controller.router)
 app.include_router(answer_options_controller.router)
+app.include_router(answer_option_descriptions_controller.router)
 app.include_router(questionnaires_controller.router)
 app.include_router(questions_controller.router)
+app.include_router(evaluations_controller.router)
+app.include_router(evaluation_answers_controller.router)
 
 # Interceptador de erros de validação de campos
 @app.exception_handler(RequestValidationError)
