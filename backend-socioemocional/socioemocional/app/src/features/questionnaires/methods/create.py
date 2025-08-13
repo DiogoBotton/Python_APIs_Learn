@@ -10,6 +10,7 @@ from src.domains.enums.questionnaire_status import QuestionnaireStatus
 from src.domains.team import Team
 from src.infrastructure.results.default import RegisterResult
 from src.infrastructure.validations.existence import entity_id_exists, field_error
+from src.infrastructure.security.actor import Actor
 from uuid import UUID
 from typing import List
 
@@ -47,8 +48,9 @@ class Command(BaseModel):
 
 # Handle
 class Create(BaseHandler[Command, RegisterResult]):
-    def __init__(self, db: Session = Depends(get_db)):
+    def __init__(self, db: Session = Depends(get_db), actor: Actor = Depends()):
         self.db = db
+        self.actor = actor
 
     def execute(self, request: Command):
         if not entity_id_exists(self.db, Competence, request.competence_id):
@@ -60,7 +62,7 @@ class Create(BaseHandler[Command, RegisterResult]):
             .first()):
             raise HTTPException(status_code=400, detail="Este título já está cadastrado em um questionário.")
         
-        entity = Questionnaire(request.title, request.description, request.status, request.competence_id)
+        entity = Questionnaire(request.title, request.description, request.status, request.competence_id, self.actor.user_id)
 
         if len(request.team_ids) > 0:
             teams = (

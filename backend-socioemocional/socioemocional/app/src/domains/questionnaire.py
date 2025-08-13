@@ -22,11 +22,12 @@ class Questionnaire(DomainBase, Base):
     questions = relationship("Question", back_populates="questionnaire")
     evaluations = relationship("Evaluation", back_populates="questionnaire")
 
-    def __init__(self, title: str, description: str, status: QuestionnaireStatus, competence_id: UUID):
+    def __init__(self, title: str, description: str, status: QuestionnaireStatus, competence_id: UUID, created_by_id: UUID):
         self.title = title
         self.description = description
         self.status = status
         self.competence_id = competence_id
+        self.created_by_id = created_by_id
 
     def update(self, title: str, description: str, status: QuestionnaireStatus, competence_id: UUID):
         self.title = title
