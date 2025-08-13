@@ -18,6 +18,7 @@ class User(DomainBase, Base):
 
     evaluations_created = relationship("Evaluation", back_populates="created_by", foreign_keys="Evaluation.created_by_id")
     evaluations_received = relationship("Evaluation", back_populates="evaluated_person", foreign_keys="Evaluation.evaluated_person_id")
+    questionnaires_created = relationship("Questionnaire", back_populates="created_by", foreign_keys="Questionnaire.created_by_id")
 
     def __init__(self, name: str, email: str, cpf: str, role: RoleType):
         self.name = name

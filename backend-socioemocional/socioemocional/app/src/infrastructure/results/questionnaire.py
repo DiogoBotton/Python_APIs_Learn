@@ -1,3 +1,4 @@
+from src.infrastructure.results.default import IdTitleResult, IdNameResult
 from src.infrastructure.results.base import BaseResult
 from uuid import UUID
 from src.domains.enums.questionnaire_status import QuestionnaireStatus
@@ -9,9 +10,10 @@ class QuestionnaireResult(BaseResult):
     title: str
     description: str
     status: QuestionnaireStatus
-    competence_id: UUID
+    competence: IdTitleResult
 
     teams: List[TeamSimpleResult]
+    created_by: IdNameResult
 
 
 class QuestionnaireSimpleResult(BaseResult):
@@ -19,4 +21,4 @@ class QuestionnaireSimpleResult(BaseResult):
     title: str
     description: str
     status: QuestionnaireStatus
-    competence_id: UUID
+    competence: IdTitleResult
