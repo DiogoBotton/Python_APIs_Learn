@@ -8,4 +8,4 @@ from .associations import team_user_association, team_manager_association, team_
 from .question import Question
 from .answer_option import AnswerOption
 from .answer_option_description import AnswerOptionDescription
-from .competence import Competence
+from .category import Category

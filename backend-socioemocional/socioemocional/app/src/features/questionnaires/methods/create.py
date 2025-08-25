@@ -4,7 +4,7 @@ from sqlalchemy import or_, and_ # Com SqlAlchemy é necessário utilizar a fun�
 from src.data.database import get_db
 from pydantic import BaseModel, field_validator
 from . import BaseHandler
-from src.domains.competence import Competence
+from src.domains.category import Category
 from src.domains.questionnaire import Questionnaire
 from src.domains.enums.questionnaire_status import QuestionnaireStatus
 from src.domains.team import Team
@@ -19,7 +19,7 @@ class Command(BaseModel):
     title: str
     description: str
     status: QuestionnaireStatus
-    competence_id: UUID
+    category_id: UUID
     team_ids: List[UUID] = []
 
     @field_validator('title', mode='after')
@@ -40,10 +40,10 @@ class Command(BaseModel):
             raise ValueError('Status é obrigatório.')
         return v
     
-    @field_validator('competence_id', mode='after')
+    @field_validator('category_id', mode='after')
     def valid(cls, v):
         if not v:
-            raise ValueError('Id da Competência é obrigatório.')
+            raise ValueError('Id da Categoria é obrigatório.')
         return v
 
 # Handle
@@ -53,8 +53,8 @@ class Create(BaseHandler[Command, RegisterResult]):
         self.actor = actor
 
     def execute(self, request: Command):
-        if not entity_id_exists(self.db, Competence, request.competence_id):
-            raise field_error("competence_id", "Competência não encontrada.")
+        if not entity_id_exists(self.db, Category, request.category_id):
+            raise field_error("category_id", "Categoria não encontrada.")
         
         if (self.db.query(Questionnaire)
             .not_deleted()
@@ -62,7 +62,7 @@ class Create(BaseHandler[Command, RegisterResult]):
             .first()):
             raise HTTPException(status_code=400, detail="Este título já está cadastrado em um questionário.")
         
-        entity = Questionnaire(request.title, request.description, request.status, request.competence_id, self.actor.user_id)
+        entity = Questionnaire(request.title, request.description, request.status, request.category_id, self.actor.user_id)
 
         if len(request.team_ids) > 0:
             teams = (

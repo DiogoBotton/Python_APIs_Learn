@@ -6,7 +6,7 @@ from sqlalchemy import and_
 from pydantic import BaseModel, field_validator
 from . import BaseHandler
 from src.domains.questionnaire import Questionnaire
-from src.domains.competence import Competence
+from src.domains.category import Category
 from src.domains.enums.questionnaire_status import QuestionnaireStatus
 from src.domains.team import Team
 from uuid import UUID
@@ -18,7 +18,7 @@ class Command(BaseModel):
     title: str
     description: str
     status: QuestionnaireStatus
-    competence_id: UUID
+    category_id: UUID
     team_ids: List[UUID] = []
 
 
@@ -34,10 +34,10 @@ class Command(BaseModel):
             raise ValueError('Descrição é obrigatório.')
         return v
     
-    @field_validator('competence_id', mode='after')
+    @field_validator('category_id', mode='after')
     def valid(cls, v):
         if not v:
-            raise ValueError('Id da Competência é obrigatório.')
+            raise ValueError('Id da Categoria é obrigatório.')
         return v
 
 # Handle
@@ -46,8 +46,8 @@ class Edit(BaseHandler[Command, Response]):
         self.db = db
 
     def execute(self, request: Command):      
-        if not entity_id_exists(self.db, Competence, request.competence_id):
-            raise field_error("competence_id", "Competência não encontrada.")
+        if not entity_id_exists(self.db, Category, request.category_id):
+            raise field_error("category_id", "Categoria não encontrada.")
         
         if (self.db.query(Questionnaire)
             .not_deleted()
@@ -64,7 +64,7 @@ class Edit(BaseHandler[Command, Response]):
         if entity is None:
             raise HTTPException(status_code=404, detail="Questionário não encontrado.")
         
-        entity.update(request.title, request.description, request.status, request.competence_id)
+        entity.update(request.title, request.description, request.status, request.category_id)
 
         teams = (
                 self.db.query(Team)

@@ -49,7 +49,7 @@ class Create(BaseHandler[Command, RegisterResult]):
 
     def execute(self, request: Command):
         if not entity_id_exists(self.db, Questionnaire, request.questionnaire_id):
-            raise field_error("competence_id", "Questionário não encontrado.")
+            raise field_error("questionnaire_id", "Questionário não encontrado.")
         
         if request.evaluation_type != EvaluationType.SelfAssessment and not request.evaluated_person_id:
             raise field_error("evaluated_person_id", "Usuário avaliado é obrigatório quando não é uma auto avaliação.")

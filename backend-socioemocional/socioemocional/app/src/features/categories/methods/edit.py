@@ -4,7 +4,7 @@ from src.data.database import get_db
 from sqlalchemy import and_ 
 from pydantic import BaseModel
 from . import BaseHandler
-from src.domains.competence import Competence
+from src.domains.category import Category
 from uuid import UUID
 from src.infrastructure.validations.existence import entity_id_exists, field_error
 
@@ -20,19 +20,19 @@ class Edit(BaseHandler[Command, Response]):
         self.db = db
 
     def execute(self, request: Command):
-        if not entity_id_exists(self.db, Competence, request.id):
-            raise field_error("id", "Competência não encontrada.")
+        if not entity_id_exists(self.db, Category, request.id):
+            raise field_error("id", "Categoria não encontrada.")
         
-        if (self.db.query(Competence)
+        if (self.db.query(Category)
             .not_deleted()
-            .filter(and_(Competence.title.ilike(f'%{request.title}%'), Competence.id != request.id))
+            .filter(and_(Category.title.ilike(f'%{request.title}%'), Category.id != request.id))
             .first()):
-            raise HTTPException(status_code=400, detail="Este título já está cadastrado em uma competência.")
+            raise HTTPException(status_code=400, detail="Este título já está cadastrado em uma categoria de competência.")
         
-        entity: Competence = (self.db
-                 .query(Competence)
+        entity: Category = (self.db
+                 .query(Category)
                  .not_deleted()
-                 .filter(Competence.id == request.id)
+                 .filter(Category.id == request.id)
                  .first())
         
         entity.update(request.title, request.description)

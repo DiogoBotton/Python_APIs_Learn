@@ -45,3 +45,10 @@ def delete_user(id: UUID,
     command = delete.Command
     command.id = id
     return handler.execute(command)
+
+@router.get("/import/download-template", summary="Gera template de importação de usuários", dependencies=[Depends(JWTBearer(allowed_roles=[RoleType.Administrator]))])
+def detail_user(id: UUID,
+              handler: detail.Detail = Depends()):
+    query = detail.Query
+    query.id = id
+    return handler.execute(query)

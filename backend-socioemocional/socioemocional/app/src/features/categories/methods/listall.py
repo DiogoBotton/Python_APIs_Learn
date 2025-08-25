@@ -2,29 +2,29 @@ from fastapi import Depends
 from sqlalchemy.orm import Session
 from src.data.database import get_db
 from . import BaseHandler
-from src.domains.competence import Competence
+from src.domains.category import Category
 from src.infrastructure.utils import remove_accents
 from src.infrastructure.pagination.models import PageRequest, PageResult
 from src.infrastructure.pagination.functions import paginate
-from src.infrastructure.results.competence import CompetenceResult
+from src.infrastructure.results.category import CategoryResult
 
 # Request
 class Query(PageRequest):
     search: str | None = None
 
 # Handle
-class ListAll(BaseHandler[Query, PageResult[CompetenceResult]]):
+class ListAll(BaseHandler[Query, PageResult[CategoryResult]]):
     def __init__(self, db: Session = Depends(get_db)):
         self.db = db
 
     def execute(self, request: Query):
-        query = self.db.query(Competence).not_deleted()
+        query = self.db.query(Category).not_deleted()
 
         if request.search:
             search = remove_accents(request.search.lower())
 
             query = query.filter(
-                Competence.title.ilike(f'%{search}%')
+                Category.title.ilike(f'%{search}%')
             )
 
-        return paginate(query, request, CompetenceResult)
+        return paginate(query, request, CategoryResult)

@@ -6,7 +6,7 @@ from starlette.status import HTTP_400_BAD_REQUEST
 from settings import Settings
 
 from src.features.users import users_controller
-from src.features.competences import competences_controller
+from src.features.categories import categories_controller
 from src.features.answer_option_descriptions import answer_option_descriptions_controller
 from src.features.evaluation_answers import evaluation_answers_controller
 from src.features.evaluations import evaluations_controller
@@ -38,7 +38,7 @@ if Settings().ENVIRONMENT == "development":
 # Controllers
 app.include_router(auth_controller.router)
 app.include_router(users_controller.router)
-app.include_router(competences_controller.router)
+app.include_router(categories_controller.router)
 app.include_router(teams_controller.router)
 app.include_router(answer_options_controller.router)
 app.include_router(answer_option_descriptions_controller.router)

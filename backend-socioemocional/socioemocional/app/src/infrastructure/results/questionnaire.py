@@ -10,7 +10,7 @@ class QuestionnaireResult(BaseResult):
     title: str
     description: str
     status: QuestionnaireStatus
-    competence: IdTitleResult
+    category: IdTitleResult
 
     teams: List[TeamSimpleResult]
     created_by: IdNameResult
@@ -21,4 +21,4 @@ class QuestionnaireSimpleResult(BaseResult):
     title: str
     description: str
     status: QuestionnaireStatus
-    competence: IdTitleResult
+    category: IdTitleResult
