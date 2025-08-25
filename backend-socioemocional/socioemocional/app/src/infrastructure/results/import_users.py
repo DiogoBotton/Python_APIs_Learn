@@ -5,7 +5,7 @@ class ImportUserErrorResult(BaseResult):
     nome: str | None
     email: str | None
     cpf: str | None
-    cargo: str | None
+    cargo: int | None
     equipe: str | None
     gerenteEquipe: str | None
     errors: List[str]

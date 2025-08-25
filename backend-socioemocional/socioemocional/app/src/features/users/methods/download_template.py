@@ -8,16 +8,12 @@ from io import BytesIO
 import openpyxl
 from . import BaseHandler
 
-# Request
-class Command(BaseModel):
-    pass
-
 # Handle
-class DownloadTemplate(BaseHandler[Command, StreamingResponse]):
+class DownloadTemplate(BaseHandler[None, StreamingResponse]):
     def __init__(self):
         pass
-    
-    async def execute(self, request: Command):
+
+    async def execute(self, request = None):
         wb = openpyxl.Workbook()
         ws = wb.active
         ws.title = "Usuários"
