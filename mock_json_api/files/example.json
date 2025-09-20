@@ -1,0 +1,58 @@
+{
+    "items": [
+        {
+            "id": 1,
+            "title": "Pergunta 1",
+            "correct_answer": 2,
+            "options": [
+                {
+                    "id": 1,
+                    "label": "Alternativa A"
+                },
+                {
+                    "id": 2,
+                    "label": "Alternativa B"
+                },
+                {
+                    "id": 3,
+                    "label": "Alternativa C"
+                },
+                {
+                    "id": 4,
+                    "label": "Alternativa D"
+                },
+                {
+                    "id": 5,
+                    "label": "Alternativa E"
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "title": "Pergunta 2",
+            "correct_answer": 3,
+            "options": [
+                {
+                    "id": 1,
+                    "label": "Alternativa A"
+                },
+                {
+                    "id": 2,
+                    "label": "Alternativa B"
+                },
+                {
+                    "id": 3,
+                    "label": "Alternativa C"
+                },
+                {
+                    "id": 4,
+                    "label": "Alternativa D"
+                },
+                {
+                    "id": 5,
+                    "label": "Alternativa E"
+                }
+            ]
+        }
+    ]
+}

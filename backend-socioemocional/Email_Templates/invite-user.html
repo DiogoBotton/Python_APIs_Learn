@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plataforma Socioemocional - Convite de Acesso</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: #f7f8f9;
+        padding: 40px;
+        font-family: Arial, sans-serif;
+      }
+
+      .main {
+        background-color: #f1f3f5;
+        padding: 48px 24px;
+        text-align: center;
+        max-width: 450px;
+        margin: 0 auto;
+      }
+
+      h2.title {
+        font-weight: 700;
+        font-size: 1.8rem;
+        line-height: 3rem;
+        color: #343a40;
+        margin-bottom: 1rem;
+      }
+
+      p.normal {
+        font-weight: 500;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        color: #343a40;
+        margin-bottom: 1rem;
+      }
+
+      .card {
+        background-color: #fff;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+        overflow: hidden;
+        text-align: left;
+      }
+
+      .card img.cover {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 8px 8px 0 0;
+      }
+
+      .card .content {
+        padding: 1.5rem;
+      }
+
+      .step {
+        border: 1px solid #e9ebed;
+        border-radius: 8px;
+        margin-top: 0.5rem;
+        padding: 1rem;
+      }
+
+      a.button {
+        background: #478fed;
+        border-radius: 5px;
+        display: block;
+        padding: 10px 24px;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.875rem;
+        line-height: 1.5rem;
+        margin-top: 1rem;
+      }
+
+      .step-title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 24px;
+        color: #343a40;
+        margin-bottom: 0.5rem;
+      }
+
+      .step-title img {
+        width: 20px;
+        height: 20px;
+      }
+
+      .footer p.normal {
+        font-size: 0.875rem;
+        margin: 0;
+      }
+
+      a {
+        color: #5e99ff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      b {
+        font-weight: 700;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="main">
+      <div class="card">
+        <img
+          src="https://i.ibb.co/nMxYhmhh/bg.jpg"
+          alt="Capa"
+          class="cover"
+        />
+        <div class="content">
+          <h2 class="title">Plataforma Socioemocional - Convite de Acesso</h2>
+
+          <p class="normal">
+            Olá {{ params.username }}, você foi convidado para participar da Plataforma Socioemocional.
+          </p>
+
+          <div class="step">
+            <div class="step-title">
+              <img src="https://i.ibb.co/CKMyWHfH/icon.png" alt="Ícone" />
+              <p>Comece agora</p>
+            </div>
+            <p>
+              Clique no botão abaixo para acessar a plataforma:
+              <br /><br />
+              <b>
+                <a class="button" target="_blank" href="{{ params.platformUrl }}">
+                  Acessar Plataforma
+                </a>
+              </b>
+            </p>
+          </div>
+
+          <div class="footer" style="margin-top: 2rem;">
+            <p class="normal">
+              Caso você não esteja esperando este convite, desconsidere este e-mail.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
