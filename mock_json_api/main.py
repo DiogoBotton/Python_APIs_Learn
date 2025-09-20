@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import questions
+from routers import mock_json
 
 app = FastAPI(
-    title="API Questions",
+    title="API Mock Json",
     docs_url="/docs" # URL para disponibilização do Swagger UI
 )
 
@@ -16,4 +16,4 @@ app.add_middleware(
     allow_headers=['*']
 )
 
-app.include_router(questions.router)
+app.include_router(mock_json.router)
