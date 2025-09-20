@@ -1,10 +1,11 @@
-from fastapi import APIRouter, Depends, Body
-from src.features.users.methods import listall, create, detail, edit, delete
+from fastapi import APIRouter, Depends, Body, File, UploadFile
+from src.features.users.methods import listall, create, detail, edit, delete, download_template, import_users
 from src.infrastructure.results.user import UserResult
 from src.domains.enums.role_type import RoleType
 from src.infrastructure.results.default import RegisterResult
 from src.infrastructure.pagination.models import PageResult
 from src.infrastructure.security.routes import JWTBearer
+from src.infrastructure.results.import_users import ImportUserResult
 from uuid import UUID
 
 router = APIRouter(prefix="/users", tags=["Users"])
@@ -45,3 +46,12 @@ def delete_user(id: UUID,
     command = delete.Command
     command.id = id
     return handler.execute(command)
+
+@router.get("/import/download-template", summary="Gera template de importação de usuários")
+async def download_template_endpoint(handler: download_template.DownloadTemplate = Depends()):
+    return await handler.execute()
+
+@router.post("/import", summary="Importa usuários via arquivo Excel", response_model=ImportUserResult)
+async def import_users_endpoint(file: UploadFile = File(...),
+              handler: import_users.ImportUsers = Depends()):
+    return await handler.execute(file)

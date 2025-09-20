@@ -1,8 +1,8 @@
 """initial migration
 
-Revision ID: 9757357c898c
+Revision ID: 7994ba126908
 Revises: 
-Create Date: 2025-08-08 11:25:00.634730
+Create Date: 2025-08-25 08:51:57.272426
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '9757357c898c'
+revision: str = '7994ba126908'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -31,7 +31,7 @@ def upgrade() -> None:
     sa.Column('deleted_at', sa.DateTime(timezone=True), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_table('competences',
+    op.create_table('categories',
     sa.Column('title', sa.String(), nullable=False),
     sa.Column('description', sa.String(), nullable=False),
     sa.Column('id', sa.UUID(), nullable=False),
@@ -65,12 +65,14 @@ def upgrade() -> None:
     sa.Column('title', sa.String(), nullable=False),
     sa.Column('description', sa.String(), nullable=False),
     sa.Column('status', sa.Enum('Active', 'Draft', 'Inactive', name='questionnairestatus'), nullable=False),
-    sa.Column('competence_id', sa.UUID(), nullable=False),
+    sa.Column('category_id', sa.UUID(), nullable=False),
+    sa.Column('created_by_id', sa.UUID(), nullable=False),
     sa.Column('id', sa.UUID(), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
     sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
     sa.Column('deleted_at', sa.DateTime(timezone=True), nullable=True),
-    sa.ForeignKeyConstraint(['competence_id'], ['competences.id'], ),
+    sa.ForeignKeyConstraint(['category_id'], ['categories.id'], ),
+    sa.ForeignKeyConstraint(['created_by_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('team_managers',
@@ -165,6 +167,6 @@ def downgrade() -> None:
     op.drop_table('questionnaires')
     op.drop_table('users')
     op.drop_table('teams')
-    op.drop_table('competences')
+    op.drop_table('categories')
     op.drop_table('answer_options')
     # ### end Alembic commands ###

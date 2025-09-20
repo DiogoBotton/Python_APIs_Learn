@@ -4,26 +4,26 @@ from src.data.database import get_db
 from pydantic import BaseModel
 from uuid import UUID
 from . import BaseHandler
-from src.domains.competence import Competence
-from src.infrastructure.results.competence import CompetenceResult
+from src.domains.category import Category
+from src.infrastructure.results.category import CategoryResult
 
 # Request
 class Query(BaseModel):
     id: UUID
 
 # Handle
-class Detail(BaseHandler[Query, CompetenceResult]):
+class Detail(BaseHandler[Query, CategoryResult]):
     def __init__(self, db: Session = Depends(get_db)):
         self.db = db
 
     def execute(self, request: Query):
         query = (self.db
-                 .query(Competence)
+                 .query(Category)
                  .not_deleted()
-                 .filter(Competence.id == request.id)
+                 .filter(Category.id == request.id)
                  .first())
         
         if query is None:
-            raise HTTPException(status_code=404, detail="Competência não encontrada.")
+            raise HTTPException(status_code=404, detail="Categoria de competência não encontrada.")
 
         return query

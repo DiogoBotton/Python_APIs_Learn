@@ -5,7 +5,7 @@ from . import BaseHandler
 from src.infrastructure.utils import remove_accents
 from src.infrastructure.pagination.models import PageRequest, PageResult
 from src.infrastructure.pagination.functions import paginate
-from src.infrastructure.results.questionnaire import QuestionnaireSimpleResult
+from src.infrastructure.results.questionnaire import QuestionnaireResult
 from src.domains.team import Team
 from src.domains.questionnaire import Questionnaire
 from typing import List
@@ -16,7 +16,7 @@ class Query(PageRequest):
     search: str | None = None
 
 # Handle
-class ListAll(BaseHandler[Query, PageResult[QuestionnaireSimpleResult]]):
+class ListAll(BaseHandler[Query, PageResult[QuestionnaireResult]]):
     def __init__(self, db: Session = Depends(get_db)):
         self.db = db
 
@@ -33,4 +33,4 @@ class ListAll(BaseHandler[Query, PageResult[QuestionnaireSimpleResult]]):
         if team_ids:
             query = query.join(Questionnaire.teams).filter(Team.id.in_(team_ids))
 
-        return paginate(query, request, QuestionnaireSimpleResult)
+        return paginate(query, request, QuestionnaireResult)

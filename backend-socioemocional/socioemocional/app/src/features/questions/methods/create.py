@@ -55,7 +55,7 @@ class Create(BaseHandler[Command, RegisterResult]):
 
     def execute(self, request: Command):
         if not entity_id_exists(self.db, Questionnaire, request.questionnaire_id):
-            raise field_error("competence_id", "Questionário não encontrado.")
+            raise field_error("questionnaire_id", "Questionário não encontrado.")
         
         for d in request.question_descriptions:
             if not entity_id_exists(self.db, AnswerOption, d.answer_option_id):

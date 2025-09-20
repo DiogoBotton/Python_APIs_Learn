@@ -4,13 +4,13 @@ from src.features.questionnaires.methods import listall, create, detail, edit, d
 from src.infrastructure.results.default import RegisterResult
 from src.infrastructure.pagination.models import PageResult
 from src.infrastructure.security.routes import JWTBearer
-from src.infrastructure.results.questionnaire import QuestionnaireSimpleResult, QuestionnaireResult
+from src.infrastructure.results.questionnaire import QuestionnaireResult
 from uuid import UUID
 
 router = APIRouter(prefix="/questionnaires", tags=["Questionnaires"])
 
 # response_model converte o resultado para o tipo especificado
-@router.get("", summary="Lista todos os questionários", dependencies=[Depends(JWTBearer())], response_model=PageResult[QuestionnaireSimpleResult])
+@router.get("", summary="Lista todos os questionários", dependencies=[Depends(JWTBearer())], response_model=PageResult[QuestionnaireResult])
 def list_function(query: listall.Query = Depends(),
                   team_ids: List[UUID] = FastQuery(None),
               handler: listall.ListAll = Depends()):

@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from src.data.database import get_db
 from pydantic import BaseModel, field_validator
 from . import BaseHandler
-from src.domains.competence import Competence
+from src.domains.category import Category
 from uuid import UUID, uuid4
 
 # Request
@@ -22,17 +22,17 @@ class Delete(BaseHandler[Command, Response]):
         self.db = db
 
     def execute(self, request: Command):
-        entity: Competence = (self.db
-                 .query(Competence)
+        entity: Category = (self.db
+                 .query(Category)
                  .not_deleted()
-                 .filter(Competence.id == request.id)
+                 .filter(Category.id == request.id)
                  .first())
         
         if entity is None:
-            raise HTTPException(status_code=404, detail="Competência não encontrada.")
+            raise HTTPException(status_code=404, detail="Categoria não encontrada.")
         
         if len(entity.questionnaires) > 0:
-            raise HTTPException(status_code=404, detail="Não é possível deletar uma competência com questionários vinculados.")
+            raise HTTPException(status_code=404, detail="Não é possível deletar uma categoria com questionários vinculados.")
         
         entity.soft_delete()
         

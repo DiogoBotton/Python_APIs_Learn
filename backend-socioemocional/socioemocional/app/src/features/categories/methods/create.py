@@ -4,7 +4,7 @@ from sqlalchemy import or_, and_ # Com SqlAlchemy é necessário utilizar a fun�
 from src.data.database import get_db
 from pydantic import BaseModel
 from . import BaseHandler
-from src.domains.competence import Competence
+from src.domains.category import Category
 from src.infrastructure.results.default import RegisterResult
 
 # Request
@@ -18,13 +18,13 @@ class Create(BaseHandler[Command, RegisterResult]):
         self.db = db
 
     def execute(self, request: Command):
-        if (self.db.query(Competence)
+        if (self.db.query(Category)
             .not_deleted()
-            .filter(Competence.title.ilike(f'%{request.title}%'))
+            .filter(Category.title.ilike(f'%{request.title}%'))
             .first()):
-            raise HTTPException(status_code=400, detail="Este título já está cadastrado em uma competência.")
+            raise HTTPException(status_code=400, detail="Este título já está cadastrado em uma categoria de competência.")
         
-        entity = Competence(request.title, request.description)
+        entity = Category(request.title, request.description)
     
         self.db.add(entity)
         self.db.commit()
