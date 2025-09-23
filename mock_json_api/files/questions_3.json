@@ -1,0 +1,144 @@
+{
+    "items": [
+        {
+            "id": 1,
+            "type": "multiple",
+            "title": "Quais são formas de compartilhar uma playlist no Spotify? (Escolha todas as que se aplicam)",
+            "correct_answer": [1,2,3,5],
+            "options": [
+                {
+                    "id": 1,
+                    "label": "a) Copiar link e enviar para amigos"
+                },
+                {
+                    "id": 2,
+                    "label": "b) Postar no Instagram Stories"
+                },
+                {
+                    "id": 3,
+                    "label": "c) Tornar colaborativa para amigos adicionarem músicas"
+                },
+                {
+                    "id": 4,
+                    "label": "d) Usar Bluetooth para transferir músicas"
+                },
+                {
+                    "id": 5,
+                    "label": "e) Compartilhar direto no WhatsApp"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "type": "multiple",
+            "title": "O que ajuda a manter uma playlist “viva” ao longo do tempo?",
+            "correct_answer": [1,2,3,5],
+            "options": [
+                {
+                    "id": 1,
+                    "label": "a) Atualizar músicas com frequência"
+                },
+                {
+                    "id": 2,
+                    "label": "b) Criar versões sazonais ou anuais"
+                },
+                {
+                    "id": 3,
+                    "label": "c) Remover músicas que não combinam mais"
+                },
+                {
+                    "id": 4,
+                    "label": "d) Deixar a playlist sempre igual, sem mudanças"
+                },
+                {
+                    "id": 5,
+                    "label": "e) Pedir sugestões de amigos"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "type": "single",
+            "title": "Qual é a principal vantagem de tornar uma playlist colaborativa?",
+            "correct_answer": [3],
+            "options": [
+                {
+                    "id": 1,
+                    "label": "a) O Spotify aumenta a quantidade de músicas permitidas."
+                },
+                {
+                    "id": 2,
+                    "label": "b) Apenas o criador pode adicionar músicas."
+                },
+                {
+                    "id": 3,
+                    "label": "c) Outras pessoas podem adicionar músicas junto com você."
+                },
+                {
+                    "id": 4,
+                    "label": "d) A playlist ganha destaque automático no Spotify."
+                },
+                {
+                    "id": 5,
+                    "label": "e) Ela vira exclusiva para usuários premium."
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "type": "combobox",
+            "title": "Escolha em qual situação uma playlist chamada “Focus Mode” seria mais útil:",
+            "correct_answer": [1],
+            "options": [
+                {
+                    "id": 1,
+                    "label": "Estudando para provas"
+                },
+                {
+                    "id": 2,
+                    "label": "Treinando na academia"
+                },
+                {
+                    "id": 3,
+                    "label": "Festa com amigos"
+                },
+                {
+                    "id": 4,
+                    "label": "Viajando de carro"
+                },
+                {
+                    "id": 5,
+                    "label": "Dançando em uma balada"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "type": "combobox",
+            "title": "Uma playlist chamada “Summer Vibes 2025” provavelmente combina melhor com:",
+            "correct_answer": [2],
+            "options": [
+                {
+                    "id": 1,
+                    "label": "Relaxar em um domingo chuvoso"
+                },
+                {
+                    "id": 2,
+                    "label": "Curtir na praia ou piscina"
+                },
+                {
+                    "id": 3,
+                    "label": "Concentração para estudar"
+                },
+                {
+                    "id": 4,
+                    "label": "Trilha sonora para dormir"
+                },
+                {
+                    "id": 5,
+                    "label": "Festa de casamento formal"
+                }
+            ]
+        }
+    ]
+}

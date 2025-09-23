@@ -5,6 +5,8 @@ import json
 main_path = os.path.dirname(__file__)
 files_path = os.path.join(main_path, '..', 'files')
 
+files_no_remove = ['example.json', 'questions_1.json', 'questions_2.json', 'questions_3.json']
+
 router = APIRouter(tags=["Mock Jsons"])
 
 @router.get("/json", summary='Retorna um json específico')
@@ -40,6 +42,9 @@ async def upload_file(file: UploadFile = File(...)):
     if not file.filename.endswith('.json'):
         raise HTTPException(status_code=400, detail="Apenas arquivos .json são permitidos")
     
+    if file.filename in files_no_remove:
+        raise HTTPException(status_code=403, detail=f"Não é permitido sobrescrever o arquivo '{file.filename}'")
+    
     file_location = os.path.join(files_path, file.filename)
     with open(file_location, "wb+") as file_object:
         file_object.write(file.file.read())
@@ -54,10 +59,10 @@ async def delete_file(filename: str):
     
     Não é permitido deletar o arquivo padrão 'example.json'.
     """
-    file_path = os.path.join(files_path, filename)
-    if filename == 'example.json':
-        raise HTTPException(status_code=403, detail="Não é permitido deletar o arquivo padrão 'example.json'")
+    if filename in files_no_remove:
+        raise HTTPException(status_code=403, detail=f"Não é permitido deletar o arquivo '{filename}'")
     
+    file_path = os.path.join(files_path, filename)
     if not os.path.exists(file_path):
         raise HTTPException(status_code=404, detail="Arquivo não encontrado")
 

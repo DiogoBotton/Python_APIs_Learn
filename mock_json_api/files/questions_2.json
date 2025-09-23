@@ -1,0 +1,88 @@
+{
+    "items": [
+        {
+            "id": 1,
+            "type": "single",
+            "title": "Qual é o primeiro passo para criar uma nova playlist no Spotify?",
+            "correct_answer": [2],
+            "options": [
+                {
+                    "id": 1,
+                    "label": "a) Escrever a descrição da playlist."
+                },
+                {
+                    "id": 2,
+                    "label": "b) Clicar em “Nova Playlist” no celular ou desktop."
+                },
+                {
+                    "id": 3,
+                    "label": "c) Escolher a capa personalizada."
+                },
+                {
+                    "id": 4,
+                    "label": "d) Adicionar músicas sugeridas pelo Spotify."
+                },
+                {
+                    "id": 5,
+                    "label": "e) Compartilhar no Instagram Stories."
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "type": "single",
+            "title": "Qual dessas opções torna a playlist mais criativa e envolvente?",
+            "correct_answer": [3],
+            "options": [
+                {
+                    "id": 1,
+                    "label": "a) Deixar sem nome."
+                },
+                {
+                    "id": 2,
+                    "label": "b) Usar nomes genéricos como “Músicas”."
+                },
+                {
+                    "id": 3,
+                    "label": "c) Criar um nome criativo e uma descrição curta."
+                },
+                {
+                    "id": 4,
+                    "label": "d) Adicionar músicas de todos os estilos possíveis."
+                },
+                {
+                    "id": 5,
+                    "label": "e) Escolher qualquer imagem aleatória como capa."
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "type": "multiple",
+            "title": "Quais dessas ações ajudam a manter a coerência da playlist? (Escolha todas as que se aplicam)",
+            "correct_answer": [1,2,3,5],
+            "options": [
+                {
+                    "id": 1,
+                    "label": "a) Selecionar músicas que combinam com o tema."
+                },
+                {
+                    "id": 2,
+                    "label": "b) Pensar na ordem das músicas (começar calmo e ir animando, por exemplo)."
+                },
+                {
+                    "id": 3,
+                    "label": "c) Usar recomendações e rádios do Spotify para descobrir músicas novas."
+                },
+                {
+                    "id": 4,
+                    "label": "d) Misturar estilos que não têm nada a ver com a vibe."
+                },
+                {
+                    "id": 5,
+                    "label": "e) Criar uma capa que represente o clima da playlist."
+                }
+            ]
+        }
+    ]
+}

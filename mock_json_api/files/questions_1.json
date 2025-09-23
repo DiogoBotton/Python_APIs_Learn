@@ -1,0 +1,88 @@
+{
+    "items": [
+        {
+            "id": 1,
+            "type": "single",
+            "title": "O que é uma playlist temática?",
+            "correct_answer": [2],
+            "options": [
+                {
+                    "id": 1,
+                    "label": "a) Uma playlist com músicas aleatórias que eu gosto."
+                },
+                {
+                    "id": 2,
+                    "label": "b) Uma playlist organizada por tema ou mood específico."
+                },
+                {
+                    "id": 3,
+                    "label": "c) Uma playlist criada automaticamente pelo Spotify."
+                },
+                {
+                    "id": 4,
+                    "label": "d) Uma playlist que só pode ter músicas internacionais."
+                },
+                {
+                    "id": 5,
+                    "label": "e) Uma playlist exclusiva para usuários premium."
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "type": "single",
+            "title": "Por que é importante escolher um tema para a playlist?",
+            "correct_answer": [3],
+            "options": [
+                {
+                    "id": 1,
+                    "label": "a) Porque o Spotify obriga a ter um tema."
+                },
+                {
+                    "id": 2,
+                    "label": "b) Para facilitar a busca por músicas famosas."
+                },
+                {
+                    "id": 3,
+                    "label": "c) Para dar identidade à playlist e manter o clima coerente."
+                },
+                {
+                    "id": 4,
+                    "label": "d) Para poder compartilhar apenas com amigos."
+                },
+                {
+                    "id": 5,
+                    "label": "e) Para aumentar o limite de músicas na playlist."
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "type": "multiple",
+            "title": "Quais dos exemplos abaixo podem ser considerados bons temas de playlist? (Escolha todas as que se aplicam).",
+            "correct_answer": [1,2,3,5],
+            "options": [
+                {
+                    "id": 1,
+                    "label": "a) Estudar à noite."
+                },
+                {
+                    "id": 2,
+                    "label": "b) Festa anos 2000."
+                },
+                {
+                    "id": 3,
+                    "label": "c) Treino pesado na academia."
+                },
+                {
+                    "id": 4,
+                    "label": "d) Misturar aleatoriamente todas as músicas do celular."
+                },
+                {
+                    "id": 5,
+                    "label": "e) Relaxar em um domingo chuvoso."
+                }
+            ]
+        }
+    ]
+}

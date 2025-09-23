@@ -2,8 +2,9 @@
     "items": [
         {
             "id": 1,
+            "type": "single",
             "title": "Pergunta 1",
-            "correct_answer": 2,
+            "correct_answer": [2],
             "options": [
                 {
                     "id": 1,
@@ -29,8 +30,9 @@
         },
         {
             "id": 1,
+            "type": "multiple",
             "title": "Pergunta 2",
-            "correct_answer": 3,
+            "correct_answer": [3,5],
             "options": [
                 {
                     "id": 1,
