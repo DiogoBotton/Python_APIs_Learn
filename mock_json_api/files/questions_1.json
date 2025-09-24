@@ -29,7 +29,7 @@
             ]
         },
         {
-            "id": 1,
+            "id": 2,
             "type": "single",
             "title": "Por que é importante escolher um tema para a playlist?",
             "correct_answer": [3],
@@ -57,7 +57,7 @@
             ]
         },
         {
-            "id": 1,
+            "id": 3,
             "type": "multiple",
             "title": "Quais dos exemplos abaixo podem ser considerados bons temas de playlist? (Escolha todas as que se aplicam).",
             "correct_answer": [1,2,3,5],
