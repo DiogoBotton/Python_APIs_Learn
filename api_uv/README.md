@@ -50,7 +50,7 @@ Para iniciar o projeto, seja ele um script de console, por exemplo, digite:
 No caso do FastAPI, digite:
 
 ```bash
-    uv run fastapi dev
+    uv run fastapi dev # Necessário fastapi[standard]
 ```
 
 Para rodar em produção, por exemplo, através de um container do docker há uma documentação na documentação do uv [Clicando aqui](https://docs.astral.sh/uv/guides/integration/fastapi/#migrating-an-existing-fastapi-project).
