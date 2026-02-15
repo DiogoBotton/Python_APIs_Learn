@@ -18,7 +18,9 @@ Será gerado 2 arquivos:
 - .python-version (com a versão do python).
 - pyproject.toml (dependencias e suas versões).
 
-### Para adicionar uma biblioteca
+### Para adicionar/remover uma biblioteca
+
+Para adicionar:
 
 ```bash
     uv add nome-biblioteca
@@ -26,6 +28,12 @@ Será gerado 2 arquivos:
     uv add fastapi # Instalação com dependências mínimas do fastApi
 
     uv add fastapi --extra standard # Instalação mais completa com todo o conjunto de dependências recomendadas para o fastApi
+```
+
+Para remover:
+
+```bash
+    uv remove <nome-da-biblioteca>
 ```
 
 A biblioteca será adicionada dentro do arquivo `pyproject.toml`, dentro do array _dependencies_.
